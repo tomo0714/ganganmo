@@ -1,37 +1,31 @@
 import { css } from '@emotion/react'
 import Link from 'next/link'
 
-const blackButton = css`
-  display: block;
-  width: 100%;
-  height: 56px;
-  border: none;
-  margin-top: 30px;
-  background-color: black;
-  color: #fff;
-  font-size: 20px;
-`
-const whiteButton = css`
-  display: block;
-  width: 100%;
-  height: 56px;
-  border: 2px solid black;
-  margin-top: 8px;
-  background: none;
-  font-size: 20px;
-`
-
 type ButtonProps = {
   title: string
   url: string
   isBlack?: boolean
+  marginTop?: string
+  width?: string
 }
 
 export const Button = (props: ButtonProps) => {
+  const { title, url, isBlack, marginTop, width } = props
+  const buttonStyle = css`
+    display: block;
+    width: ${width ? width + 'px' : '100%'};
+    height: 56px;
+    border: ${isBlack ? 'none' : '2px solid black'};
+    margin: 0 auto;
+    margin-top: ${marginTop ?? 0}px;
+    background: ${isBlack ? 'black' : 'none'};
+    color: ${isBlack ? '#fff' : 'black'};
+    font-size: 20px;
+  `
   return (
-    <Link href={props.url}>
+    <Link href={url}>
       <a>
-        <button css={props.isBlack ? blackButton : whiteButton}>{props.title}</button>
+        <button css={buttonStyle}>{title}</button>
       </a>
     </Link>
   )
