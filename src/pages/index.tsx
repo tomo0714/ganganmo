@@ -2,12 +2,8 @@ import { css } from '@emotion/react'
 import { GetStaticProps, NextPage } from 'next'
 import Link from 'next/link'
 import { Product } from 'shopify-buy'
+import { Title } from '@/components/Title'
 import { client } from 'src/libs/client'
-
-const h2 = css`
-  font-size: 20px;
-  text-align: center;
-`
 
 const shoppingList = css`
   display: grid;
@@ -23,7 +19,6 @@ const shoppingList = css`
 
   p {
     margin-top: 5px;
-    font-size: 14px;
   }
 `
 
@@ -35,7 +30,7 @@ const Home: NextPage<Props> = ({ products }) => {
   const urlEncode = (str: string) => str.replaceAll('/', '%2F')
   return (
     <>
-      <h2 css={h2}>Shopping</h2>
+      <Title>Shopping</Title>
       <ul css={shoppingList}>
         {products.map((product) => (
           <li key={product.id}>

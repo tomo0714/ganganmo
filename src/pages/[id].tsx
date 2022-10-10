@@ -2,17 +2,12 @@ import { css } from '@emotion/react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { Product } from 'shopify-buy'
 import { Button } from '@/components/Button'
+import { Title } from '@/components/Title'
 import { client } from 'src/libs/client'
 
 const detail = css`
   img {
     height: auto;
-  }
-
-  h2 {
-    margin-top: 20px;
-    font-size: 24px;
-    text-align: center;
   }
 
   p {
@@ -43,11 +38,11 @@ const DetailPage = (props: DetailProps) => {
       ) : (
         <div css={detail}>
           <img src={product.images[0].src} alt={product.title} />
-          <h2>{product.title}</h2>
+          <Title>{product.title}</Title>
           <p>￥{product.variants[0].price}</p>
           <div css={description}>{product.description}</div>
-          <Button title="Cart" url="/cart" isBlack />
-          <Button title="← Back to shopping" url="/" />
+          <Button title="Cart" url="/cart" marginTop="20" isBlack />
+          <Button title="← Back to shopping" marginTop="8" url="/" />
         </div>
       )}
     </>
