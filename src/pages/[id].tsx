@@ -1,6 +1,30 @@
+import { css } from '@emotion/react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { Product } from 'shopify-buy'
-import { client } from '@/libs/client'
+import { Button } from '@/components/Button'
+import { client } from 'src/libs/client'
+
+const detail = css`
+  img {
+    height: auto;
+  }
+
+  h2 {
+    margin-top: 20px;
+    font-size: 24px;
+    text-align: center;
+  }
+
+  p {
+    margin-top: 20px;
+    text-align: center;
+  }
+`
+
+const description = css`
+  margin-top: 20px;
+  text-align: center;
+`
 
 type DetailProps = {
   product?: Product
@@ -8,18 +32,25 @@ type DetailProps = {
 }
 
 const DetailPage = (props: DetailProps) => {
-  if (props.errors) {
-    return <p>Error: {props.errors}</p>
-  }
-  if (!props.product) {
-    return <p>Error: Product not found</p>
-  }
+  const { product, errors } = props
 
   return (
-    <div>
-      <p>{props.product.title}</p>
-      <img src={props.product.images[0].src} height={200} alt={props.product.title} />
-    </div>
+    <>
+      {errors ? (
+        <p>Error: {props.errors}</p>
+      ) : !product ? (
+        <p>Error: {props.errors}</p>
+      ) : (
+        <div css={detail}>
+          <img src={product.images[0].src} alt={product.title} />
+          <h2>{product.title}</h2>
+          <p>￥{product.variants[0].price}</p>
+          <div css={description}>{product.description}</div>
+          <Button title="Cart" url="/cart" isBlack />
+          <Button title="← Back to shopping" url="/" />
+        </div>
+      )}
+    </>
   )
 }
 
