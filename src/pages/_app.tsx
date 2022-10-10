@@ -1,7 +1,13 @@
 import type { AppProps } from 'next/app'
+import 'modern-css-reset/dist/reset.min.css'
+import { Layout } from '@/components/Layout'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  )
 }
 
 export default MyApp
