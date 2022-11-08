@@ -5,7 +5,13 @@ import { Product } from 'shopify-buy'
 import { Title } from '@/components/Title'
 import { client } from 'src/libs/client'
 
-const shoppingList = css`
+const noProductStyle = css`
+  margin: 100px 0;
+  font-weight: bold;
+  text-align: center;
+`
+
+const shoppingListStyle = css`
   display: grid;
   gap: 10px;
   grid-template-columns: 1fr 1fr;
@@ -23,36 +29,52 @@ const shoppingList = css`
 `
 
 type Props = {
-  products: Product[]
+  products?: Product[]
+  errors?: string
 }
 
-const Home: NextPage<Props> = ({ products }) => {
+const Home: NextPage<Props> = (props) => {
+  const { products, errors } = props
   const urlEncode = (str: string) => str.replaceAll('/', '%2F')
   return (
     <>
-      <Title>Shopping</Title>
-      <ul css={shoppingList}>
-        {products.map((product) => (
-          <li key={product.id}>
-            <Link href={`/${urlEncode(product.id as string)}`}>
-              <a>
-                <img src={product.images[0].src} alt={product.title} />
-                <h4>{product.title}</h4>
-                <p>￥{product.variants[0].price}</p>
-              </a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <Title>SHOPPING</Title>
+      {!products ? (
+        <p css={noProductStyle}>{errors}</p>
+      ) : products.length === 0 ? (
+        <p css={noProductStyle}>Product does not exist ! </p>
+      ) : (
+        <ul css={shoppingListStyle}>
+          {products.map((product) => (
+            <li key={product.id}>
+              <Link href={`/${urlEncode(product.id as string)}`}>
+                <a>
+                  <img src={product.images[0].src} alt={product.title} />
+                  <h4>{product.title}</h4>
+                  <p>￥{product.variants[0].price}</p>
+                </a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </>
   )
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const products: Product[] = await client.product.fetchAll()
-  return {
-    props: {
-      products: JSON.parse(JSON.stringify(products))
+  try {
+    const products: Product[] = await client.product.fetchAll()
+    return {
+      props: {
+        products: JSON.parse(JSON.stringify(products))
+      }
+    }
+  } catch {
+    return {
+      props: {
+        errors: 'unexpected error'
+      }
     }
   }
 }

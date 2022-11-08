@@ -17,4 +17,9 @@ export const global = css`
   ul {
     padding: 0;
   }
+
+  button {
+    border: none;
+    background: none;
+  }
 `

@@ -4,8 +4,9 @@ import { useState } from 'react'
 import { BiShoppingBag } from 'react-icons/bi'
 import { Logo } from '@/components/Logo'
 import { MenuButton } from '@/components/MenuButton'
+import useCart from '@/hooks/useCart'
 
-const header = css`
+const headerStyle = css`
   position: fixed;
   top: 0;
   left: 0;
@@ -17,7 +18,7 @@ const header = css`
   padding: 0 20px;
   background-color: #fff;
 `
-const cart = css`
+const cartStyle = css`
   display: flex;
   align-items: center;
 
@@ -30,17 +31,20 @@ const cart = css`
 export const Header = () => {
   const [isCross, setIsCross] = useState<boolean>(false)
   const onClickMenu = () => setIsCross((flag) => !flag)
+  const { cart } = useCart()
 
   return (
-    <header css={header}>
-      <MenuButton isCross={isCross} onClick={onClickMenu} />
-      <Logo />
-      <Link href={'/cart'}>
-        <a css={cart}>
-          <BiShoppingBag size={22} />
-          <span>0</span>
-        </a>
-      </Link>
-    </header>
+    <>
+      <header css={headerStyle}>
+        <MenuButton isCross={isCross} onClick={onClickMenu} />
+        <Logo />
+        <Link href="/cart">
+          <a css={cartStyle}>
+            <BiShoppingBag size={22} />
+            <span>{cart ? cart.lineItems.length : 0}</span>
+          </a>
+        </Link>
+      </header>
+    </>
   )
 }

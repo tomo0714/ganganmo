@@ -1,16 +1,15 @@
 import { css } from '@emotion/react'
-import Link from 'next/link'
 
 type ButtonProps = {
   title: string
-  url: string
   isBlack?: boolean
   marginTop?: string
   width?: string
+  onClick?: () => void
 }
 
 export const Button = (props: ButtonProps) => {
-  const { title, url, isBlack, marginTop, width } = props
+  const { title, isBlack, marginTop, width, onClick } = props
   const buttonStyle = css`
     display: block;
     width: ${width ? width + 'px' : '100%'};
@@ -23,10 +22,8 @@ export const Button = (props: ButtonProps) => {
     font-size: 20px;
   `
   return (
-    <Link href={url}>
-      <a>
-        <button css={buttonStyle}>{title}</button>
-      </a>
-    </Link>
+    <button css={buttonStyle} onClick={onClick}>
+      {title}
+    </button>
   )
 }
