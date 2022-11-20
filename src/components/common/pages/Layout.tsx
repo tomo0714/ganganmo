@@ -1,8 +1,8 @@
 import { css, Global } from '@emotion/react'
 import { ReactNode } from 'react'
 import { global } from '@/Layout/Global'
-import { Footer } from 'src/components/Footer'
-import { Header } from 'src/components/Header'
+import { Footer } from '@/components/common/organisms/Footer'
+import { Header } from '@/components/common/organisms/Header'
 
 const wrapper = css`
   padding: 0 20px;

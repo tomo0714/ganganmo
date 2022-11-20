@@ -2,8 +2,8 @@ import { css } from '@emotion/react'
 import Link from 'next/link'
 import { useState } from 'react'
 import { BiShoppingBag } from 'react-icons/bi'
-import { Logo } from '@/components/Logo'
-import { MenuButton } from '@/components/MenuButton'
+import { Logo } from '@/components/common/atoms/Logo'
+import { MenuButton } from '@/components/common/atoms/MenuButton'
 import useCart from '@/hooks/useCart'
 
 const headerStyle = css`

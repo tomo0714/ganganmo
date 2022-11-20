@@ -4,3 +4,15 @@ export type Checkout = {
   removeItem: (lineItemId: string) => Promise<void>
   buyNow: (variantId: string, quantity: number) => Promise<void>
 }
+
+export type CartPageProps = {
+  cart: ShopifyBuy.Cart | null
+  checkout: Checkout
+}
+
+export type CartItemProps = {
+  deleteAction: () => void
+  imgUrl: string | undefined
+  title: string | undefined
+  price: string | undefined
+}

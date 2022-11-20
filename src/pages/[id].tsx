@@ -1,39 +1,16 @@
-import { css } from '@emotion/react'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import Link from 'next/link'
-import { useState } from 'react'
+import { useSetRecoilState } from 'recoil'
 import { CustomAttribute, Product } from 'shopify-buy'
-import { Button } from '@/components/Button'
-import { Title } from '@/components/Title'
+import { ShoppingDetailPage } from '@/components/shopping/pages/ShoppingDetailPage'
 import useCart from '@/hooks/useCart'
+import { ShowNotificationRecoil } from '@/recoil/showNotification'
+import { ProductProps } from '@/types/shopping'
 import { client } from 'src/libs/client'
 
-const detail = css`
-  img {
-    height: auto;
-  }
-
-  p {
-    margin-top: 20px;
-    text-align: center;
-  }
-`
-
-const description = css`
-  margin-top: 20px;
-  text-align: center;
-`
-
-type DetailProps = {
-  product?: Product
-  errors?: string
-}
-
-const DetailPage = (props: DetailProps) => {
+const DetailPage = (props: ProductProps) => {
   const { product, errors } = props
   const { checkout } = useCart()
-  const [popup, setPopup] = useState<boolean>(false)
-
+  const showNotification = useSetRecoilState(ShowNotificationRecoil)
   const onClickCart = async () => {
     if (product) {
       const quantity = 1
@@ -44,62 +21,10 @@ const DetailPage = (props: DetailProps) => {
       ]
       await checkout.addItem(variantId, quantity, customAttributes)
     }
-    setPopup(true)
+    showNotification(true)
   }
 
-  return (
-    <>
-      {errors ? (
-        <p>Error: {errors}</p>
-      ) : !product ? (
-        <p>Error: {errors}</p>
-      ) : (
-        <div css={detail}>
-          <img src={product.images[0].src} alt={product.title} />
-          <Title>{product.title}</Title>
-          <p>￥{product.variants[0].price}</p>
-          <div css={description}>{product.description}</div>
-          <Button title="Cart" onClick={onClickCart} marginTop="20" isBlack />
-          <Link href="/">
-            <a>
-              <Button title="← Back to shopping" marginTop="8" />
-            </a>
-          </Link>
-        </div>
-      )}
-      {popup && (
-        <div
-          css={css`
-            position: fixed;
-            z-index: 100;
-            bottom: 30%;
-            left: 50%;
-            display: flex;
-            width: 70%;
-            height: 50px;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-            background-color: #f9ebd4;
-            border-radius: 5px;
-            box-shadow: 5px 5px 0 black;
-            transform: translate(-50%, -50%);
-
-            p {
-              font-weight: bold;
-            }
-
-            button {
-              font-size: 20px;
-            }
-          `}
-        >
-          <p>Product added to cart !</p>
-          <button onClick={() => setPopup(false)}>×</button>
-        </div>
-      )}
-    </>
-  )
+  return <ShoppingDetailPage product={product} errors={errors} onClickCart={onClickCart} />
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -110,7 +35,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: false }
 }
 
-export const getStaticProps: GetStaticProps<DetailProps> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<ProductProps> = async ({ params }) => {
   try {
     const id = params?.id
     if (!id) {
