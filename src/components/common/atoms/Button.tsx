@@ -13,13 +13,13 @@ export const Button = (props: ButtonProps) => {
   const buttonStyle = css`
     display: block;
     width: ${width ? width + 'px' : '100%'};
-    height: 56px;
-    border: ${isBlack ? 'none' : '2px solid black'};
+    height: 43px;
+    border: ${isBlack ? 'none' : '1px solid black'};
     margin: 0 auto;
     margin-top: ${marginTop ?? 0}px;
     background: ${isBlack ? 'black' : 'none'};
     color: ${isBlack ? '#fff' : 'black'};
-    font-size: 20px;
+    font-size: 14px;
   `
   return (
     <button css={buttonStyle} onClick={onClick}>

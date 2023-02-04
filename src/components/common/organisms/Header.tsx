@@ -8,6 +8,7 @@ import useCart from '@/hooks/useCart'
 
 const headerStyle = css`
   position: fixed;
+  z-index: 100;
   top: 0;
   left: 0;
   display: flex;
@@ -16,7 +17,6 @@ const headerStyle = css`
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  background-color: #fff;
 `
 const cartStyle = css`
   display: flex;
@@ -24,7 +24,8 @@ const cartStyle = css`
 
   span {
     margin-left: 5px;
-    font-size: 22px;
+    font-size: 14px;
+    font-weight: bold;
   }
 `
 
@@ -40,7 +41,7 @@ export const Header = () => {
         <Logo />
         <Link href="/cart">
           <a css={cartStyle}>
-            <BiShoppingBag size={22} />
+            <BiShoppingBag size={21} />
             <span>{cart ? cart.lineItems.length : 0}</span>
           </a>
         </Link>

@@ -2,9 +2,8 @@ import { css } from '@emotion/react'
 import { ReactNode } from 'react'
 
 const title = css`
-  margin-top: 20px;
-  font-size: 20px;
-  text-align: center;
+  margin-top: 40px;
+  font-size: 16px;
 `
 
 export const Title = (props: { children: ReactNode }) => {

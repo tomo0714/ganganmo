@@ -6,19 +6,24 @@ import { Title } from '@/components/common/atoms/Title'
 import { ProductProps } from '@/types/shopping'
 
 const detail = css`
+  padding: 0 20px;
+
   img {
     height: auto;
   }
+`
 
-  p {
-    margin-top: 20px;
-    text-align: center;
-  }
+const priceStyle = css`
+  padding-bottom: 20px;
+  border-bottom: 1px solid;
+  margin: 20px 0;
+  font-size: 16px;
+  font-weight: bold;
 `
 
 const description = css`
-  margin-top: 20px;
-  text-align: center;
+  margin-top: 10px;
+  font-size: 12px;
 `
 
 type ShoppingDetailPageProps = ProductProps & {
@@ -38,12 +43,20 @@ export const ShoppingDetailPage = (props: ShoppingDetailPageProps) => {
           <div css={detail}>
             <img src={product.images[0].src} alt={product.title} />
             <Title>{product.title}</Title>
-            <p>￥{product.variants[0].price}</p>
+            <p css={priceStyle}>￥{product.variants[0].price}</p>
+            <p
+              css={css`
+                font-size: 14px;
+                font-weight: bold;
+              `}
+            >
+              description
+            </p>
             <div css={description}>{product.description}</div>
-            <Button title="Cart" onClick={onClickCart} marginTop="20" isBlack />
+            <Button title="Cart" onClick={onClickCart} marginTop="60" isBlack />
             <Link href="/">
               <a>
-                <Button title="← Back to shopping" marginTop="8" />
+                <Button title="← Back to shopping" marginTop="10" />
               </a>
             </Link>
           </div>

@@ -9,7 +9,7 @@ export const MenuButton = (props: MenuButtonProps) => {
   const { isCross, onClick } = props
   const menuButtonStyle = css`
     position: relative;
-    width: 30px;
+    width: 15px;
     border: none;
     background: none;
 
@@ -20,25 +20,28 @@ export const MenuButton = (props: MenuButtonProps) => {
       width: 100%;
       height: 2px;
       background-color: black;
+      border-radius: 5px;
     }
     ${isCross
       ? `
       span:nth-of-type(1) {
-        transform: rotate(22deg);
+        transform: rotate(45deg);
+        width: 15px;
       }
       span:nth-of-type(2) {
         display: none;
       }
       span:nth-of-type(3) {
-        transform: rotate(-22deg);
+        transform: rotate(-45deg);
+        width: 15px;
       }
       `
       : `
       span:nth-of-type(1) {
-        top: -5px;
+        top: -7px;
       }
       span:nth-of-type(3) {
-        top: 5px;
+        top: 7px;
       }`}
   `
   return (

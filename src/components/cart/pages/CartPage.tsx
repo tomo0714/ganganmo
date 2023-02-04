@@ -1,7 +1,6 @@
 import { css } from '@emotion/react'
 import { CartItem } from '@/components/cart/organisms/CartItem'
 import { Button } from '@/components/common/atoms/Button'
-import { Title } from '@/components/common/atoms/Title'
 import { ErrorPage } from '@/components/common/pages/ErrorPage'
 import { CartPageProps } from '@/types/cart'
 
@@ -10,7 +9,6 @@ export const CartPage = (props: CartPageProps) => {
 
   return (
     <>
-      <Title>Cart</Title>
       {cart && cart.lineItems.length > 0 ? (
         <ul>
           {cart.lineItems.map((item) => {
@@ -40,7 +38,7 @@ export const CartPage = (props: CartPageProps) => {
           />
         </ul>
       ) : (
-        <ErrorPage message="Cart is empty!" />
+        <ErrorPage message="Cart is empty." />
       )}
     </>
   )

@@ -1,6 +1,5 @@
 import { css } from '@emotion/react'
 import Link from 'next/link'
-import { Title } from '@/components/common/atoms/Title'
 import { ProductsProps } from '@/types/shopping'
 
 const noProductStyle = css`
@@ -11,18 +10,35 @@ const noProductStyle = css`
 
 const shoppingListStyle = css`
   display: grid;
-  gap: 10px;
+  gap: 7px;
   grid-template-columns: 1fr 1fr;
   text-align: center;
 
+  div {
+    position: relative;
+    height: 276px;
+    background-color: #e8e5e5;
+  }
+
+  img {
+    position: absolute;
+    bottom: 10px;
+    height: auto;
+  }
+
   h4 {
-    margin-top: 10px;
-    font-size: 14px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 9px;
     font-weight: normal;
   }
 
   p {
-    margin-top: 5px;
+    position: absolute;
+    top: 30px;
+    left: 10px;
+    font-size: 9px;
   }
 `
 
@@ -32,7 +48,6 @@ export const ShoppingPage = (props: ProductsProps) => {
 
   return (
     <>
-      <Title>SHOPPING</Title>
       {!products ? (
         <p css={noProductStyle}>{errors}</p>
       ) : products.length === 0 ? (
@@ -43,9 +58,11 @@ export const ShoppingPage = (props: ProductsProps) => {
             <li key={product.id}>
               <Link href={`/${urlEncode(product.id as string)}`}>
                 <a>
-                  <img src={product.images[0].src} alt={product.title} />
-                  <h4>{product.title}</h4>
-                  <p>￥{product.variants[0].price}</p>
+                  <div>
+                    <img src={product.images[0].src} alt={product.title} />
+                    <h4>{product.title}</h4>
+                    <p>￥{product.variants[0].price}</p>
+                  </div>
                 </a>
               </Link>
             </li>

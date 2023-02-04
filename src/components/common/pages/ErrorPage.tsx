@@ -7,6 +7,7 @@ export const ErrorPage = (props: { message: string }) => {
   return (
     <div
       css={css`
+        padding: 30px;
         margin: 120px auto 200px;
       `}
     >
@@ -19,7 +20,7 @@ export const ErrorPage = (props: { message: string }) => {
       </p>
       <Link href="/">
         <a>
-          <Button title="Back to shopping" width="240" isBlack />
+          <Button title="← Back to shopping" marginTop="20" />
         </a>
       </Link>
     </div>

@@ -9,7 +9,6 @@ export const Logo = () => {
         <div
           css={css`
             font-size: 25px;
-            font-weight: bold;
           `}
         >
           Logo
