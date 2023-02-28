@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
+import { useState } from 'react'
 import { useSetRecoilState } from 'recoil'
 import { CustomAttribute, Product } from 'shopify-buy'
 import { ShoppingDetailPage } from '@/components/shopping/pages/ShoppingDetailPage'
@@ -11,6 +12,8 @@ const DetailPage = (props: ProductProps) => {
   const { product, errors } = props
   const { checkout } = useCart()
   const showNotification = useSetRecoilState(ShowNotificationRecoil)
+  const [imageIndex, setImageIndex] = useState<number>(0)
+
   const onClickCart = async () => {
     if (product) {
       const quantity = 1
@@ -24,7 +27,17 @@ const DetailPage = (props: ProductProps) => {
     showNotification(true)
   }
 
-  return <ShoppingDetailPage product={product} errors={errors} onClickCart={onClickCart} />
+  const onClickImage = (index: number) => setImageIndex(index)
+
+  return (
+    <ShoppingDetailPage
+      product={product}
+      errors={errors}
+      onClickCart={onClickCart}
+      onClickImage={onClickImage}
+      imageIndex={imageIndex}
+    />
+  )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
