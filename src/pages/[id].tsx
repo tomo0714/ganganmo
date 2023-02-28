@@ -1,18 +1,17 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { useSetRecoilState } from 'recoil'
 import { CustomAttribute, Product } from 'shopify-buy'
 import { ShoppingDetailPage } from '@/components/shopping/pages/ShoppingDetailPage'
 import useCart from '@/hooks/useCart'
-import { ShowNotificationRecoil } from '@/recoil/showNotification'
 import { ProductProps } from '@/types/shopping'
 import { client } from 'src/libs/client'
 
 const DetailPage = (props: ProductProps) => {
   const { product, errors } = props
   const { checkout } = useCart()
-  const showNotification = useSetRecoilState(ShowNotificationRecoil)
   const [imageIndex, setImageIndex] = useState<number>(0)
+  const router = useRouter()
 
   const onClickCart = async () => {
     if (product) {
@@ -24,7 +23,7 @@ const DetailPage = (props: ProductProps) => {
       ]
       await checkout.addItem(variantId, quantity, customAttributes)
     }
-    showNotification(true)
+    router.push('/cart')
   }
 
   const onClickImage = (index: number) => setImageIndex(index)
