@@ -15,7 +15,7 @@ const CartItemStyle = css`
 `
 
 export const CartItem = (props: CartItemProps) => {
-  const { deleteAction, imgUrl, title, price } = props
+  const { onClickDelete, imgUrl, title, price } = props
   return (
     <div css={CartItemStyle}>
       <img src={imgUrl} alt={title} />
@@ -51,7 +51,7 @@ export const CartItem = (props: CartItemProps) => {
             margin-top: 20px;
           `}
         >
-          <DeleteButton deleteAction={deleteAction} />
+          <DeleteButton deleteAction={onClickDelete} />
         </div>
       </div>
     </div>

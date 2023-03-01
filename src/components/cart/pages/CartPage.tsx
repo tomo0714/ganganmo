@@ -20,7 +20,7 @@ const buttonWrapperStyle = css`
 `
 
 export const CartPage = (props: CartPageProps) => {
-  const { cart, checkout } = props
+  const { cart, onClickDelete } = props
   let totalPrice = 0
 
   return (
@@ -33,7 +33,7 @@ export const CartPage = (props: CartPageProps) => {
               const title = item.title
               const price = item.customAttributes.find((attr) => attr.key === 'price')?.value
               const id = item.id.toString()
-              const deleteAction = () => checkout.removeItem(id)
+
               totalPrice += Number(price)
               return (
                 <li
@@ -42,7 +42,7 @@ export const CartPage = (props: CartPageProps) => {
                   `}
                   key={id}
                 >
-                  <CartItem deleteAction={deleteAction} imgUrl={imgUrl} title={title} price={price} />
+                  <CartItem onClickDelete={() => onClickDelete(id)} imgUrl={imgUrl} title={title} price={price} />
                 </li>
               )
             })}

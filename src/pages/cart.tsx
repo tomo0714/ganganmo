@@ -12,7 +12,11 @@ const Cart = () => {
     setCartCount(cart ? cart.lineItems.length : 0)
   }, [cart])
 
-  return <CartPage cart={cart} checkout={checkout} />
+  const onClickDelete = (id: string) => {
+    checkout.removeItem(id)
+  }
+
+  return <CartPage cart={cart} onClickDelete={onClickDelete} />
 }
 
 export default Cart

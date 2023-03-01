@@ -73,9 +73,11 @@ const useCart = (): { cart: Cart | null; checkout: Checkout } => {
    */
   const removeItem = useCallback(
     async (lineItemId: string) => {
+      setLoadingRecoil(true)
       const lineItemIdsToRemove = [lineItemId]
       const newCart: Cart = await browserClient.checkout.removeLineItems(checkoutId, lineItemIdsToRemove)
       setCart(newCart)
+      setLoadingRecoil(false)
     },
     [checkoutId]
   )

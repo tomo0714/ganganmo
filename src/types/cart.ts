@@ -7,11 +7,11 @@ export type Checkout = {
 
 export type CartPageProps = {
   cart: ShopifyBuy.Cart | null
-  checkout: Checkout
+  onClickDelete: (id: string) => void
 }
 
 export type CartItemProps = {
-  deleteAction: () => void
+  onClickDelete: () => void
   imgUrl: string | undefined
   title: string | undefined
   price: string | undefined
