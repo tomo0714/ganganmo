@@ -31,6 +31,7 @@ const cartStyle = css`
   }
 `
 
+const isHideManuButton = true
 export const Header = () => {
   const [isCross, setIsCross] = useState<boolean>(false)
   const [count, setCount] = useState<number>(0)
@@ -43,7 +44,7 @@ export const Header = () => {
 
   return (
     <header css={headerStyle}>
-      <MenuButton isCross={isCross} onClick={onClickMenu} />
+      {!isHideManuButton && <MenuButton isCross={isCross} onClick={onClickMenu} />}
       <Logo />
       <Link href="/cart">
         <a css={cartStyle}>
