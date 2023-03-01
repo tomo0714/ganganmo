@@ -1,10 +1,12 @@
 import { css } from '@emotion/react'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { BiShoppingBag } from 'react-icons/bi'
+import { useRecoilValue } from 'recoil'
 import { Logo } from '@/components/common/atoms/Logo'
 import { MenuButton } from '@/components/common/atoms/MenuButton'
 import useCart from '@/hooks/useCart'
+import { cartCountRecoil } from '@/recoil/cartCountRecoil'
 
 const headerStyle = css`
   position: fixed;
@@ -31,21 +33,24 @@ const cartStyle = css`
 
 export const Header = () => {
   const [isCross, setIsCross] = useState<boolean>(false)
+  const [count, setCount] = useState<number>(0)
+  const cartCount = useRecoilValue(cartCountRecoil)
   const onClickMenu = () => setIsCross((flag) => !flag)
   const { cart } = useCart()
 
+  useEffect(() => setCount(cart ? cart.lineItems.length : 0), [cart])
+  useEffect(() => setCount(cartCount), [cartCount])
+
   return (
-    <>
-      <header css={headerStyle}>
-        <MenuButton isCross={isCross} onClick={onClickMenu} />
-        <Logo />
-        <Link href="/cart">
-          <a css={cartStyle}>
-            <BiShoppingBag size={21} />
-            <span>{cart ? cart.lineItems.length : 0}</span>
-          </a>
-        </Link>
-      </header>
-    </>
+    <header css={headerStyle}>
+      <MenuButton isCross={isCross} onClick={onClickMenu} />
+      <Logo />
+      <Link href="/cart">
+        <a css={cartStyle}>
+          <BiShoppingBag size={21} />
+          <span>{count}</span>
+        </a>
+      </Link>
+    </header>
   )
 }
