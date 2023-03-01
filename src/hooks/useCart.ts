@@ -1,11 +1,14 @@
 import { useCallback, useEffect, useState } from 'react'
+import { useSetRecoilState } from 'recoil'
 import { Cart } from 'shopify-buy'
 import { browserClient } from '@/libs/client'
+import { LoadingRecoil } from '@/recoil/LoadingRecoil'
 import { Checkout } from '@/types/cart'
 
 const useCart = (): { cart: Cart | null; checkout: Checkout } => {
   const [cart, setCart] = useState<Cart | null>(null)
   const [checkoutId, setCheckoutId] = useState<string>('')
+  const setLoadingRecoil = useSetRecoilState(LoadingRecoil)
 
   /**
    * get checkout id and initialize cart object
@@ -37,6 +40,7 @@ const useCart = (): { cart: Cart | null; checkout: Checkout } => {
    */
   const addItem = useCallback(
     async (variantId: string, quantity: number, customAttributes: { key: string; value: string }[]) => {
+      setLoadingRecoil(true)
       const lineItemsToAdd = [
         {
           variantId: variantId,
@@ -46,6 +50,7 @@ const useCart = (): { cart: Cart | null; checkout: Checkout } => {
       ]
       const newCart = await browserClient.checkout.addLineItems(checkoutId, lineItemsToAdd)
       setCart(newCart)
+      setLoadingRecoil(false)
     },
     [checkoutId]
   )

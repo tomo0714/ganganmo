@@ -1,4 +1,7 @@
 import { css } from '@emotion/react'
+import { ReactNode } from 'react'
+import { useRecoilValue } from 'recoil'
+import { LoadingRecoil } from '@/recoil/LoadingRecoil'
 
 const LoadingStyle = css`
   position: absolute;
@@ -37,13 +40,25 @@ const LoadingStyle = css`
   }
 `
 
-export const Loading = () => {
+type LoadingProps = {
+  children: ReactNode
+}
+
+export const Loading = (props: LoadingProps) => {
+  const { children } = props
+  const isLoading = useRecoilValue(LoadingRecoil)
   return (
-    <div css={LoadingStyle}>
-      <span className="bar top"></span>
-      <span className="bar middle"></span>
-      <span className="bar bottom"></span>
-      <p>LOADING</p>
-    </div>
+    <>
+      {isLoading ? (
+        <div css={LoadingStyle}>
+          <span className="bar top"></span>
+          <span className="bar middle"></span>
+          <span className="bar bottom"></span>
+          <p>LOADING</p>
+        </div>
+      ) : (
+        children
+      )}
+    </>
   )
 }

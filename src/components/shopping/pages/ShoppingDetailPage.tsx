@@ -1,7 +1,6 @@
 import { css } from '@emotion/react'
 import Link from 'next/link'
 import { Button } from '@/components/common/atoms/Button'
-import { Notification } from '@/components/common/atoms/Notification'
 import { Title } from '@/components/common/atoms/Title'
 import { ProductProps } from '@/types/shopping'
 
@@ -59,33 +58,34 @@ export const ShoppingDetailPage = (props: ShoppingDetailPageProps) => {
       {errors || !product ? (
         <p>Error: {errors}</p>
       ) : (
-        <>
-          <div css={detail}>
-            <div css={mainImagesStyle}>
-              <img src={product.images[imageIndex].src} alt={product.title} />
-            </div>
-            <ul css={imagesStyle}>
-              {product.images.map(
-                (_img, index) =>
-                  product.images.length > 1 && (
-                    <li key={`${_img.id}_${index}`} onClick={() => onClickImage(index)}>
-                      <img src={_img.src} alt={product.title} />
-                    </li>
-                  )
-              )}
-            </ul>
-            <Title>{product.title}</Title>
-            <p css={priceStyle}>￥{product.variants[0].price}</p>
-            <div css={description}>{product.description}</div>
-            <Button title="add to cart" onClick={onClickCart} marginTop="60" isBlack />
-            <Link href="/">
-              <a>
-                <Button title="← back to shopping" marginTop="10" />
-              </a>
-            </Link>
+        <div css={detail}>
+          <div css={mainImagesStyle}>
+            <img src={product.images[imageIndex].src} alt={product.title} />
           </div>
-          <Notification message="Add to cart!" />
-        </>
+          <ul css={imagesStyle}>
+            {product.images.map(
+              (_img, index) =>
+                product.images.length > 1 && (
+                  <li key={`${_img.id}_${index}`} onClick={() => onClickImage(index)}>
+                    <img src={_img.src} alt={product.title} />
+                  </li>
+                )
+            )}
+          </ul>
+          <Title>{product.title}</Title>
+          <p css={priceStyle}>￥{product.variants[0].price}</p>
+          <div css={description}>{product.description}</div>
+          <Link href="/cart">
+            <a>
+              <Button title="add to cart" onClick={onClickCart} marginTop="60" isBlack />
+            </a>
+          </Link>
+          <Link href="/">
+            <a>
+              <Button title="← back to shopping" marginTop="10" />
+            </a>
+          </Link>
+        </div>
       )}
     </>
   )

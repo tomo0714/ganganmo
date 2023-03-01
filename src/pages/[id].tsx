@@ -1,5 +1,4 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { CustomAttribute, Product } from 'shopify-buy'
 import { ShoppingDetailPage } from '@/components/shopping/pages/ShoppingDetailPage'
@@ -11,7 +10,6 @@ const DetailPage = (props: ProductProps) => {
   const { product, errors } = props
   const { checkout } = useCart()
   const [imageIndex, setImageIndex] = useState<number>(0)
-  const router = useRouter()
 
   const onClickCart = async () => {
     if (product) {
@@ -23,7 +21,6 @@ const DetailPage = (props: ProductProps) => {
       ]
       await checkout.addItem(variantId, quantity, customAttributes)
     }
-    router.push('/cart')
   }
 
   const onClickImage = (index: number) => setImageIndex(index)
