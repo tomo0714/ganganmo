@@ -15,7 +15,7 @@ const headerStyle = css`
   left: 0;
   display: flex;
   width: 100%;
-  height: 56px;
+  height: 70px;
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
@@ -25,9 +25,9 @@ const cartStyle = css`
   align-items: center;
 
   span {
-    margin-left: 5px;
-    font-size: 14px;
-    font-weight: bold;
+    padding-top: 6px;
+    margin-left: 3px;
+    font-size: 21px;
   }
 `
 

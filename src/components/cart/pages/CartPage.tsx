@@ -90,7 +90,7 @@ export const CartPage = (props: CartPageProps) => {
           </ul>
         </div>
       ) : (
-        <ErrorPage message="Cart is empty." />
+        <ErrorPage message="Your cart is empty." />
       )}
     </>
   )

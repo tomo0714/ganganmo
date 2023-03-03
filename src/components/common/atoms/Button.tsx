@@ -19,7 +19,10 @@ export const Button = (props: ButtonProps) => {
     margin-top: ${marginTop ?? 0}px;
     background: ${isBlack ? 'black' : 'none'};
     color: ${isBlack ? '#fff' : 'black'};
-    font-size: 14px;
+    font-family: Oswald, sans-serif;
+    font-size: 18px;
+    font-style: italic;
+    text-transform: uppercase;
   `
   return (
     <button css={buttonStyle} onClick={onClick}>

@@ -10,8 +10,14 @@ const LoadingStyle = css`
   margin-top: -10px;
   margin-left: -50px;
   background-color: #fff;
-  font-weight: bold;
   text-align: center;
+
+  p {
+    margin-top: 5px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 20px;
+    font-weight: bold;
+  }
 
   .bar {
     display: block;
@@ -47,6 +53,7 @@ type LoadingProps = {
 export const Loading = (props: LoadingProps) => {
   const { children } = props
   const isLoading = useRecoilValue(LoadingRecoil)
+
   return (
     <>
       {isLoading ? (

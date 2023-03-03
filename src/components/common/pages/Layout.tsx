@@ -16,7 +16,7 @@ export const Layout = (props: LayoutProps) => {
         <Header />
         <main
           css={css`
-            margin-top: 60px;
+            margin-top: 70px;
           `}
         >
           {props.children}

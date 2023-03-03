@@ -32,15 +32,9 @@ const imagesStyle = css`
   }
 `
 
-const priceStyle = css`
-  padding-bottom: 20px;
-  border-bottom: 1px solid;
-  margin: 20px 0;
-  font-size: 16px;
-  font-weight: bold;
-`
-
 const description = css`
+  padding: 10px;
+  border-top: 1px solid;
   margin-top: 10px;
   font-size: 12px;
 `
@@ -72,8 +66,8 @@ export const ShoppingDetailPage = (props: ShoppingDetailPageProps) => {
                 )
             )}
           </ul>
-          <Title>{product.title}</Title>
-          <p css={priceStyle}>￥{product.variants[0].price}</p>
+          <Title type="h2">{product.title}</Title>
+          <Title type="h2">&yen;{product.variants[0].price}</Title>
           <div css={description}>{product.description}</div>
           <Link href="/cart">
             <a>
@@ -82,7 +76,7 @@ export const ShoppingDetailPage = (props: ShoppingDetailPageProps) => {
           </Link>
           <Link href="/">
             <a>
-              <Button title="← back to shopping" marginTop="10" />
+              <Button title="back to shopping" marginTop="10" />
             </a>
           </Link>
         </div>

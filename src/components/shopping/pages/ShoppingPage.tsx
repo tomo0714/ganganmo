@@ -1,5 +1,6 @@
 import { css } from '@emotion/react'
 import Link from 'next/link'
+import { Title } from '@/components/common/atoms/Title'
 import { ProductsProps } from '@/types/shopping'
 
 const noProductStyle = css`
@@ -30,15 +31,13 @@ const shoppingListStyle = css`
     position: absolute;
     top: 10px;
     left: 10px;
-    font-size: 9px;
-    font-weight: normal;
   }
 
   p {
     position: absolute;
-    top: 30px;
+    top: 35px;
     left: 10px;
-    font-size: 9px;
+    font-size: 14px;
   }
 `
 
@@ -60,8 +59,8 @@ export const ShoppingPage = (props: ProductsProps) => {
                 <a>
                   <div>
                     <img src={product.images[0].src} alt={product.title} />
-                    <h4>{product.title}</h4>
-                    <p>￥{product.variants[0].price}</p>
+                    <Title type="h4">{product.title}</Title>
+                    <p>&yen;{product.variants[0].price}</p>
                   </div>
                 </a>
               </Link>
