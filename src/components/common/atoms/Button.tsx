@@ -1,4 +1,5 @@
 import { css } from '@emotion/react'
+import Link from 'next/link'
 
 type ButtonProps = {
   title: string
@@ -6,10 +7,11 @@ type ButtonProps = {
   marginTop?: string
   width?: string
   onClick?: () => void
+  href?: string
 }
 
 export const Button = (props: ButtonProps) => {
-  const { title, isBlack, marginTop, width, onClick } = props
+  const { title, isBlack, marginTop, width, onClick, href } = props
   const buttonStyle = css`
     display: block;
     width: ${width ? width + 'px' : '100%'};
@@ -25,8 +27,20 @@ export const Button = (props: ButtonProps) => {
     text-transform: uppercase;
   `
   return (
-    <button css={buttonStyle} onClick={onClick}>
-      {title}
-    </button>
+    <>
+      {href ? (
+        <Link href={href}>
+          <a>
+            <button css={buttonStyle} onClick={onClick}>
+              {title}
+            </button>
+          </a>
+        </Link>
+      ) : (
+        <button css={buttonStyle} onClick={onClick}>
+          {title}
+        </button>
+      )}
+    </>
   )
 }
