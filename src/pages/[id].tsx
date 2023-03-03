@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { CustomAttribute, Product } from 'shopify-buy'
 import { ShoppingDetailPage } from '@/components/shopping/pages/ShoppingDetailPage'
 import useCart from '@/hooks/useCart'
@@ -11,7 +11,7 @@ const DetailPage = (props: ProductProps) => {
   const { checkout } = useCart()
   const [imageIndex, setImageIndex] = useState<number>(0)
 
-  const onClickCart = async () => {
+  const onClickCart = useCallback(async () => {
     if (product) {
       const quantity = 1
       const variantId: string = product.variants[0].id as string
@@ -21,9 +21,9 @@ const DetailPage = (props: ProductProps) => {
       ]
       await checkout.addItem(variantId, quantity, customAttributes)
     }
-  }
+  }, [checkout])
 
-  const onClickImage = (index: number) => setImageIndex(index)
+  const onClickImage = useCallback((index: number) => setImageIndex(index), [])
 
   return (
     <ShoppingDetailPage

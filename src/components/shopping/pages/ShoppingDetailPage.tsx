@@ -1,42 +1,14 @@
 import { css } from '@emotion/react'
-import Link from 'next/link'
 import { Button } from '@/components/common/atoms/Button'
-import { Title } from '@/components/common/atoms/Title'
+import { ErrorPage } from '@/components/common/pages/ErrorPage'
+import { ShoppingDetailImage } from '@/components/shopping/atoms/ShoppingDetailImage'
+import { ShoppingDetailThumbnail } from '@/components/shopping/atoms/ShoppingDetailThumbnail'
+import { ShoppingDetailImageWrapper } from '@/components/shopping/molecules/ShoppingDetailImageWrapper'
+import { ShoppingDetailInfo } from '@/components/shopping/organisms/ShoppingDetailInfo'
 import { ProductProps } from '@/types/shopping'
 
-const detail = css`
+const detailStyle = css`
   padding: 0 20px;
-`
-const mainImagesStyle = css`
-  width: 100%;
-  height: 500px;
-
-  img {
-    height: 100%;
-  }
-`
-
-const imagesStyle = css`
-  display: flex;
-  flex-wrap: wrap;
-
-  li {
-    width: 19%;
-    height: 96px;
-    margin: 0 0.5% 2%;
-  }
-
-  img {
-    width: 100%;
-    height: 100%;
-  }
-`
-
-const description = css`
-  padding: 10px;
-  border-top: 1px solid;
-  margin-top: 10px;
-  font-size: 12px;
 `
 
 type ShoppingDetailPageProps = ProductProps & {
@@ -50,35 +22,30 @@ export const ShoppingDetailPage = (props: ShoppingDetailPageProps) => {
   return (
     <>
       {errors || !product ? (
-        <p>Error: {errors}</p>
+        <ErrorPage message={errors} />
       ) : (
-        <div css={detail}>
-          <div css={mainImagesStyle}>
-            <img src={product.images[imageIndex].src} alt={product.title} />
-          </div>
-          <ul css={imagesStyle}>
+        <div css={detailStyle}>
+          <ShoppingDetailThumbnail src={product.images[imageIndex].src} alt={product.title} />
+          <ShoppingDetailImageWrapper>
             {product.images.map(
               (_img, index) =>
                 product.images.length > 1 && (
-                  <li key={`${_img.id}_${index}`} onClick={() => onClickImage(index)}>
-                    <img src={_img.src} alt={product.title} />
-                  </li>
+                  <ShoppingDetailImage
+                    key={`${_img.src}_${imageIndex}`}
+                    onClick={() => onClickImage(index)}
+                    src={_img.src}
+                    alt={product.title}
+                  />
                 )
             )}
-          </ul>
-          <Title type="h2">{product.title}</Title>
-          <Title type="h2">&yen;{product.variants[0].price}</Title>
-          <div css={description}>{product.description}</div>
-          <Link href="/cart">
-            <a>
-              <Button title="add to cart" onClick={onClickCart} marginTop="60" isBlack />
-            </a>
-          </Link>
-          <Link href="/">
-            <a>
-              <Button title="back to shopping" marginTop="10" />
-            </a>
-          </Link>
+          </ShoppingDetailImageWrapper>
+          <ShoppingDetailInfo
+            title={product.title}
+            price={product.variants[0].price}
+            description={product.description}
+          />
+          <Button href="/cart" title="add to cart" onClick={onClickCart} marginTop="60" isBlack />
+          <Button href="/" title="back to shopping" marginTop="10" />
         </div>
       )}
     </>
