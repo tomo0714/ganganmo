@@ -79,13 +79,11 @@ export const CartPage = (props: CartPageProps) => {
               </Link>
             </li>
             <li>
-              <Button
-                title="checkout"
-                onClick={() => {
-                  location.href = cart.webUrl
-                }}
-                isBlack
-              />
+              <Link href={cart.webUrl}>
+                <a>
+                  <Button title="checkout" isBlack />
+                </a>
+              </Link>
             </li>
           </ul>
         </div>
