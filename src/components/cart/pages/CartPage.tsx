@@ -1,8 +1,8 @@
 import { css } from '@emotion/react'
 import Link from 'next/link'
 import { CartItem } from '@/components/cart/organisms/CartItem'
+import { CartEmptyPage } from '@/components/cart/pages/CartEmptyPage'
 import { Button } from '@/components/common/atoms/Button'
-import { ErrorPage } from '@/components/common/pages/ErrorPage'
 import { CartPageProps } from '@/types/cart'
 
 const cartStyle = css`
@@ -88,7 +88,7 @@ export const CartPage = (props: CartPageProps) => {
           </ul>
         </div>
       ) : (
-        <ErrorPage message="Your cart is empty." />
+        <CartEmptyPage message="Your cart is empty." />
       )}
     </>
   )
