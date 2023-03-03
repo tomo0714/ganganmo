@@ -1,29 +1,24 @@
 import { css } from '@emotion/react'
-import Link from 'next/link'
-import { Button } from '@/components/common/atoms/Button'
 
-export const ErrorPage = (props: { message: string }) => {
+const noProductStyle = css`
+  font-weight: bold;
+  text-align: center;
+`
+
+type ErrorPageProps = {
+  message: string | undefined
+}
+
+export const ErrorPage = (props: ErrorPageProps) => {
   const { message } = props
   return (
     <div
       css={css`
         height: 100vh;
-        padding: calc(50vh - 134px) 20px 20px 20px;
-        margin: 0 auto;
+        padding-top: calc(30vh);
       `}
     >
-      <p
-        css={css`
-          text-align: center;
-        `}
-      >
-        {message}
-      </p>
-      <Link href="/">
-        <a>
-          <Button title="back to shopping" marginTop="5" isBlack />
-        </a>
-      </Link>
+      <p css={noProductStyle}>{message ? message : 'An unexpected error occurred.'}</p>
     </div>
   )
 }
