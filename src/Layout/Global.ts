@@ -2,6 +2,7 @@ import { css } from '@emotion/react'
 
 export const global = css`
   body {
+    font-family: 'Courier Prime', monospace;
     font-size: 14px;
   }
 
