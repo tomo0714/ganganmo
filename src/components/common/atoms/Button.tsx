@@ -1,6 +1,16 @@
 import { css } from '@emotion/react'
 import Link from 'next/link'
 
+const buttonStyle = css`
+  display: block;
+  height: 43px;
+  margin: 0 auto;
+  font-family: Oswald, sans-serif;
+  font-size: 18px;
+  font-style: italic;
+  text-transform: uppercase;
+`
+
 type ButtonProps = {
   title: string
   isBlack?: boolean
@@ -12,32 +22,25 @@ type ButtonProps = {
 
 export const Button = (props: ButtonProps) => {
   const { title, isBlack, marginTop, width, onClick, href } = props
-  const buttonStyle = css`
-    display: block;
+  const propsStyle = css`
     width: ${width ? width + 'px' : '100%'};
-    height: 43px;
     border: ${isBlack ? 'none' : '1px solid black'};
-    margin: 0 auto;
     margin-top: ${marginTop ?? 0}px;
     background: ${isBlack ? 'black' : 'none'};
     color: ${isBlack ? '#fff' : 'black'};
-    font-family: Oswald, sans-serif;
-    font-size: 18px;
-    font-style: italic;
-    text-transform: uppercase;
   `
   return (
     <>
       {href ? (
         <Link href={href}>
           <a>
-            <button css={buttonStyle} onClick={onClick}>
+            <button css={[buttonStyle, propsStyle]} onClick={onClick}>
               {title}
             </button>
           </a>
         </Link>
       ) : (
-        <button css={buttonStyle} onClick={onClick}>
+        <button css={[buttonStyle, propsStyle]} onClick={onClick}>
           {title}
         </button>
       )}
