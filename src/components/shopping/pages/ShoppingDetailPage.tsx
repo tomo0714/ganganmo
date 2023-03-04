@@ -4,7 +4,7 @@ import { ErrorPage } from '@/components/common/pages/ErrorPage'
 import { ShoppingDetailImage } from '@/components/shopping/atoms/ShoppingDetailImage'
 import { ShoppingDetailThumbnail } from '@/components/shopping/atoms/ShoppingDetailThumbnail'
 import { ShoppingDetailImageWrapper } from '@/components/shopping/molecules/ShoppingDetailImageWrapper'
-import { ShoppingDetailInfo } from '@/components/shopping/organisms/ShoppingDetailInfo'
+import { ShoppingDetailInfo } from '@/components/shopping/molecules/ShoppingDetailInfo'
 import { ProductProps } from '@/types/shopping'
 
 const detailStyle = css`

@@ -1,12 +1,5 @@
-import { css } from '@emotion/react'
 import { Title } from '@/components/common/atoms/Title'
-
-const descriptionStyle = css`
-  padding: 10px;
-  border-top: 1px solid;
-  margin-top: 10px;
-  font-size: 12px;
-`
+import { ShoppingDetailDescription } from '@/components/shopping/atoms/ShoppingDetailDescription'
 
 type ShoppingDetailInfoProps = {
   title: string
@@ -20,7 +13,7 @@ export const ShoppingDetailInfo = (props: ShoppingDetailInfoProps) => {
     <>
       <Title type="h2">{title}</Title>
       <Title type="h2">&yen;{price}</Title>
-      <div css={descriptionStyle}>{description}</div>
+      <ShoppingDetailDescription description={description} />
     </>
   )
 }
