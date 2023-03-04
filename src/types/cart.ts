@@ -12,7 +12,7 @@ export type CartPageProps = {
 
 export type CartItemProps = {
   onClickDelete: () => void
-  imgUrl: string | undefined
-  title: string | undefined
+  src: string | undefined
+  title: string
   price: string | undefined
 }

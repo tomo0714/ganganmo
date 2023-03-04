@@ -1,22 +1,12 @@
 import { css } from '@emotion/react'
-import Link from 'next/link'
+import { CartTotalPrice } from '@/components/cart/atoms/CartTotalPrice'
+import { CartButtonArea } from '@/components/cart/molecules/CartButtonArea'
 import { CartItem } from '@/components/cart/organisms/CartItem'
 import { CartEmptyPage } from '@/components/cart/pages/CartEmptyPage'
-import { Button } from '@/components/common/atoms/Button'
 import { CartPageProps } from '@/types/cart'
 
 const cartStyle = css`
   padding: 0 20px;
-`
-
-const buttonWrapperStyle = css`
-  display: flex;
-  justify-content: space-between;
-  padding: 30px 0;
-
-  li {
-    width: 48%;
-  }
 `
 
 export const CartPage = (props: CartPageProps) => {
@@ -33,59 +23,14 @@ export const CartPage = (props: CartPageProps) => {
               const title = item.title
               const price = item.customAttributes.find((attr) => attr.key === 'price')?.value
               const id = item.id.toString()
-
               totalPrice += Number(price)
               return (
-                <li
-                  css={css`
-                    margin-bottom: 20px;
-                  `}
-                  key={id}
-                >
-                  <CartItem onClickDelete={() => onClickDelete(id)} imgUrl={imgUrl} title={title} price={price} />
-                </li>
+                <CartItem key={id} onClickDelete={() => onClickDelete(id)} src={imgUrl} title={title} price={price} />
               )
             })}
           </ul>
-
-          <div
-            css={css`
-              text-align: right;
-            `}
-          >
-            <p
-              css={css`
-                margin-top: 5px;
-                font-size: 14px;
-                font-weight: bold;
-
-                span {
-                  font-size: 12px;
-                  font-weight: normal;
-                }
-              `}
-            >
-              <span>total </span>￥{totalPrice}
-            </p>
-            <p>(tax inc)</p>
-          </div>
-
-          <ul css={buttonWrapperStyle}>
-            <li>
-              <Link href="/">
-                <a>
-                  <Button title="back to shopping" />
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href={cart.webUrl}>
-                <a>
-                  <Button title="checkout" isBlack />
-                </a>
-              </Link>
-            </li>
-          </ul>
+          <CartTotalPrice totalPrice={totalPrice} />
+          <CartButtonArea checkoutUrl={cart.webUrl} />
         </div>
       ) : (
         <CartEmptyPage message="Your cart is empty." />

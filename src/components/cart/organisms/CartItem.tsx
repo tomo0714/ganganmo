@@ -1,59 +1,14 @@
-import { css } from '@emotion/react'
-import { DeleteButton } from '@/components/common/atoms/DeleteButton'
+import { CartItemImage } from '@/components/cart/atoms/CartItemImage'
+import { CartItemInfo } from '@/components/cart/molecules/CartItemInfo'
+import { CartItemWrapper } from '@/components/cart/organisms/CartItemWrapper'
 import { CartItemProps } from '@/types/cart'
 
-const CartItemStyle = css`
-  display: flex;
-  padding: 20px 0;
-  border-bottom: 1px solid #dfdfdf;
-
-  img {
-    width: 25%;
-    height: 125px;
-    margin-right: 30px;
-  }
-`
-
 export const CartItem = (props: CartItemProps) => {
-  const { onClickDelete, imgUrl, title, price } = props
+  const { onClickDelete, src, title, price } = props
   return (
-    <div css={CartItemStyle}>
-      <img src={imgUrl} alt={title} />
-      <div
-        css={css`
-          width: 100%;
-          font-size: 12px;
-          text-align: right;
-
-          p:nth-of-type(2) {
-            margin-top: 5px;
-          }
-        `}
-      >
-        <p>{title}</p>
-        <p
-          css={css`
-            margin-top: 5px;
-            font-size: 14px;
-            font-weight: bold;
-
-            span {
-              font-size: 12px;
-              font-weight: normal;
-            }
-          `}
-        >
-          <span>price </span>￥{price}
-        </p>
-        <p>(tax inc)</p>
-        <div
-          css={css`
-            margin-top: 20px;
-          `}
-        >
-          <DeleteButton deleteAction={onClickDelete} />
-        </div>
-      </div>
-    </div>
+    <CartItemWrapper>
+      <CartItemImage src={src} alt={title} />
+      <CartItemInfo title={title} price={price} onClickDelete={onClickDelete} />
+    </CartItemWrapper>
   )
 }

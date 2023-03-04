@@ -23,4 +23,9 @@ export const global = css`
     border: none;
     background: none;
   }
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
 `

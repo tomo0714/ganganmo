@@ -9,8 +9,14 @@ const deleteButtonStyle = css`
 export const DeleteButton = (props: { deleteAction: () => void }) => {
   const { deleteAction } = props
   return (
-    <button css={deleteButtonStyle} onClick={deleteAction}>
-      delete
-    </button>
+    <div
+      css={css`
+        margin-top: 20px;
+      `}
+    >
+      <button css={deleteButtonStyle} onClick={deleteAction}>
+        delete
+      </button>
+    </div>
   )
 }
