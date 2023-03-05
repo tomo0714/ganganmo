@@ -18,10 +18,11 @@ type ButtonProps = {
   width?: string
   onClick?: () => void
   href?: string
+  type?: 'submit'
 }
 
 export const Button = (props: ButtonProps) => {
-  const { title, isBlack, marginTop, width, onClick, href } = props
+  const { title, isBlack, marginTop, width, onClick, href, type } = props
   const propsStyle = css`
     width: ${width ? width + 'px' : '100%'};
     border: ${isBlack ? 'none' : '1px solid black'};
@@ -34,13 +35,13 @@ export const Button = (props: ButtonProps) => {
       {href ? (
         <Link href={href}>
           <a>
-            <button css={[buttonStyle, propsStyle]} onClick={onClick}>
+            <button type={type} css={[buttonStyle, propsStyle]} onClick={onClick}>
               {title}
             </button>
           </a>
         </Link>
       ) : (
-        <button css={[buttonStyle, propsStyle]} onClick={onClick}>
+        <button type={type} css={[buttonStyle, propsStyle]} onClick={onClick}>
           {title}
         </button>
       )}

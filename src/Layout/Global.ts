@@ -28,4 +28,12 @@ export const global = css`
     width: 100%;
     height: 100%;
   }
+
+  input {
+    border: 1px solid #a5a5a5;
+  }
+
+  textarea {
+    border: 1px solid #a5a5a5;
+  }
 `

@@ -14,8 +14,7 @@ export const Footer = () => {
   return (
     <footer css={FooterStyle}>
       <IconWrapper>
-        {/** TODO: Contact作成後、遷移先を変える */}
-        <QuestionIcon href="/" />
+        <QuestionIcon href="/contact" />
         <InstagramIcon href="https://www.instagram.com/gan_gannmo/" />
       </IconWrapper>
       <ScrollTopIcon />
