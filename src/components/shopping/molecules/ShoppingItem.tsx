@@ -6,12 +6,19 @@ import { ShoppingItemPrice } from '@/components/shopping/atoms/ShoppingItemPrice
 
 const shoppingListStyle = css`
   position: relative;
-  height: 276px;
+  width: 49%;
+  height: 70vw;
+  margin-bottom: 2%;
 
   h4 {
     position: absolute;
     top: 10px;
     left: 10px;
+  }
+  @media screen and (min-width: 1000px) {
+    width: 24.3%;
+    height: 36vw;
+    margin-bottom: 1%;
   }
 `
 
@@ -25,10 +32,10 @@ type ShoppingItemProps = {
 export const ShoppingItem = (props: ShoppingItemProps) => {
   const { id, src, title, price } = props
   return (
-    <li>
+    <li css={shoppingListStyle}>
       <Link href={id}>
         <a>
-          <div css={shoppingListStyle}>
+          <div>
             <ShoppingItemImage src={src} alt={title} />
             <Title type="h4">{title}</Title>
             <ShoppingItemPrice price={price} />

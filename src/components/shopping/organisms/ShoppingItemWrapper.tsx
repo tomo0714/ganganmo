@@ -2,10 +2,9 @@ import { css } from '@emotion/react'
 import { ReactNode } from 'react'
 
 const shoppingListStyle = css`
-  display: grid;
-  gap: 7px;
-  grid-template-columns: 1fr 1fr;
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 `
 
 type ShoppingItemWrapperProps = {
