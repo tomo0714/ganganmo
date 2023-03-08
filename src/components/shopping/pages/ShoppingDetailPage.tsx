@@ -1,14 +1,18 @@
 import { css } from '@emotion/react'
-import { Button } from '@/components/common/atoms/Button'
 import { ErrorPage } from '@/components/common/pages/ErrorPage'
-import { ShoppingDetailImage } from '@/components/shopping/atoms/ShoppingDetailImage'
-import { ShoppingDetailThumbnail } from '@/components/shopping/atoms/ShoppingDetailThumbnail'
-import { ShoppingDetailImageWrapper } from '@/components/shopping/molecules/ShoppingDetailImageWrapper'
-import { ShoppingDetailInfo } from '@/components/shopping/molecules/ShoppingDetailInfo'
+import { ShoppingDetailContent } from '@/components/shopping/organisms/ShoppingDetailContent'
+import { ShoppingDetailPreview } from '@/components/shopping/organisms/ShoppingDetailPreview'
 import { ProductProps } from '@/types/shopping'
 
 const detailStyle = css`
+  max-width: 540px;
   padding: 0 20px;
+  margin: 0 auto;
+  @media screen and (min-width: 1000px) {
+    display: flex;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
 `
 
 type ShoppingDetailPageProps = ProductProps & {
@@ -25,27 +29,18 @@ export const ShoppingDetailPage = (props: ShoppingDetailPageProps) => {
         <ErrorPage message={errors} />
       ) : (
         <div css={detailStyle}>
-          <ShoppingDetailThumbnail src={product.images[imageIndex].src} alt={product.title} />
-          <ShoppingDetailImageWrapper>
-            {product.images.map(
-              (_img, index) =>
-                product.images.length > 1 && (
-                  <ShoppingDetailImage
-                    key={`${_img.src}_${imageIndex}`}
-                    onClick={() => onClickImage(index)}
-                    src={_img.src}
-                    alt={product.title}
-                  />
-                )
-            )}
-          </ShoppingDetailImageWrapper>
-          <ShoppingDetailInfo
+          <ShoppingDetailPreview
+            thumbnailSrc={product.images[imageIndex].src}
+            thumbnailAlt={product.title}
+            images={product.images}
+            onClickImage={onClickImage}
+          />
+          <ShoppingDetailContent
             title={product.title}
             price={product.variants[0].price}
             description={product.description}
+            onClickCart={onClickCart}
           />
-          <Button href="/cart" title="add to cart" onClick={onClickCart} marginTop="60" isBlack />
-          <Button href="/" title="back to shopping" marginTop="10" />
         </div>
       )}
     </>

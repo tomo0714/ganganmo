@@ -2,7 +2,11 @@ import { css } from '@emotion/react'
 
 const thumbnailStyle = css`
   width: 100%;
-  height: 500px;
+  height: 134.6vw;
+  max-height: 725px;
+  @media screen and (min-width: 1000px) {
+    height: 600px;
+  }
 
   img {
     height: 100%;

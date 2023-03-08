@@ -2,8 +2,12 @@ import { css } from '@emotion/react'
 
 const imageStyle = css`
   width: 19%;
-  height: 96px;
+  height: 25.6vw;
+  max-height: 142.5px;
   margin: 0 0.5% 2%;
+  @media screen and (min-width: 1000px) {
+    height: 114px;
+  }
 
   img {
     width: 100%;
