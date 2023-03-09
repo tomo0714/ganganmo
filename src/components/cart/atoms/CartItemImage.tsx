@@ -2,7 +2,8 @@ import { css } from '@emotion/react'
 
 const CartItemImageStyle = css`
   width: 33%;
-  height: 125px;
+  height: 34vw;
+  max-height: 208.48px;
 `
 
 type CartItemImageProps = {

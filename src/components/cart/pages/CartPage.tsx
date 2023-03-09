@@ -6,7 +6,9 @@ import { CartEmptyPage } from '@/components/cart/pages/CartEmptyPage'
 import { CartPageProps } from '@/types/cart'
 
 const cartStyle = css`
+  max-width: 600px;
   padding: 0 20px;
+  margin: 0 auto;
 `
 
 export const CartPage = (props: CartPageProps) => {
