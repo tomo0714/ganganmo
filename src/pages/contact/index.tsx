@@ -1,0 +1,45 @@
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { useSetRecoilState } from 'recoil'
+import { ContactPage } from '@/components/contact/pages/ContactPage'
+import { LoadingRecoil } from '@/recoil/LoadingRecoil'
+
+const Contact = () => {
+  const setLoadingRecoil = useSetRecoilState(LoadingRecoil)
+  const router = useRouter()
+  const [isFormError, setIsFormError] = useState<boolean>(false)
+
+  const onSubmit = async (event: any) => {
+    event.preventDefault()
+    if (!event.target.name.value || !event.target.email.value || !event.target.message.value) {
+      setIsFormError(true)
+      return
+    }
+    setLoadingRecoil(true)
+    try {
+      const res = await fetch('/api/send', {
+        body: JSON.stringify({
+          name: event.target.name.value,
+          email: event.target.email.value,
+          message: event.target.message.value
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: 'POST'
+      })
+      await res.json()
+      router.push('/contact/success')
+    } catch (error) {
+      console.error('Fetch error : ', error)
+      router.push('/contact/failed')
+    } finally {
+      setTimeout(() => {
+        setLoadingRecoil(false)
+      }, 500)
+    }
+  }
+  return <ContactPage isFormError={isFormError} onSubmit={onSubmit} />
+}
+
+export default Contact

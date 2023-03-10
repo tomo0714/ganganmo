@@ -4,16 +4,17 @@ import { ContactSubmitButton } from '@/components/contact/atoms/ContactSubmitBut
 
 type ContactFormProps = {
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void
+  isFormError: boolean
 }
 
 export const ContactForm = (props: ContactFormProps) => {
-  const { onSubmit } = props
+  const { onSubmit, isFormError } = props
   return (
     <form onSubmit={onSubmit}>
       <Input label="Your Name" id="name" name="name" type="name" />
-      <Input label="Emal" id="email" name="email" type="email" />
+      <Input label="Email" id="email" name="email" type="email" />
       <Textarea label="How Can We Help You?" id="message" name="message" />
-      <ContactSubmitButton />
+      <ContactSubmitButton isFormError={isFormError} />
     </form>
   )
 }
