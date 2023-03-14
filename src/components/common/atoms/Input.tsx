@@ -1,7 +1,7 @@
 import { css } from '@emotion/react'
 import { HTMLInputTypeAttribute } from 'react'
 
-const InputStyle = css`
+const inputStyle = css`
   margin-top: 30px;
 
   input {
@@ -21,7 +21,7 @@ type InputProps = {
 export const Input = (props: InputProps) => {
   const { label, id, name, type } = props
   return (
-    <div css={InputStyle}>
+    <div css={inputStyle}>
       <label htmlFor="name">{label}</label>
       <input id={id} name={name} type={type} />
     </div>

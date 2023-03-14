@@ -13,8 +13,8 @@ const useCart = (): { cart: Cart | null; checkout: Checkout } => {
   /**
    * get checkout id and initialize cart object
    */
-  const initializeCart = async () => {
-    const id: string | null = localStorage.getItem('checkoutId')
+  const initializeCart = useCallback(async () => {
+    const id: string | null = localStorage.getItem('CHECKOUT_ID')
     let newCart: Cart
     let newCheckoutId: string
     if (id) {
@@ -23,11 +23,11 @@ const useCart = (): { cart: Cart | null; checkout: Checkout } => {
     } else {
       newCart = await browserClient.checkout.create()
       newCheckoutId = newCart.id as string
-      localStorage.setItem('checkoutId', newCheckoutId)
+      localStorage.setItem('CHECKOUT_ID', newCheckoutId)
     }
     setCheckoutId(newCheckoutId)
     setCart(newCart)
-  }
+  }, [])
 
   useEffect(() => {
     initializeCart()

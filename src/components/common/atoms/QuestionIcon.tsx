@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import { FaRegQuestionCircle } from 'react-icons/fa'
+import { LinkWrapper } from '@/components/common/molecules/LinkWrapper'
 
 type QuestionIconProps = {
   href: string
@@ -9,11 +9,9 @@ export const QuestionIcon = (props: QuestionIconProps) => {
   const { href } = props
   return (
     <li>
-      <Link href={href}>
-        <a>
-          <FaRegQuestionCircle />
-        </a>
-      </Link>
+      <LinkWrapper href={href}>
+        <FaRegQuestionCircle />
+      </LinkWrapper>
     </li>
   )
 }

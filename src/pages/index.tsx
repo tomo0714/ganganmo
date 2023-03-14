@@ -4,12 +4,12 @@ import { ErrorTemplate } from '@/components/common/templates/ErrorTemplate'
 import { ShoppingTemplate } from '@/components/shopping/templates/ShoppingTemplate'
 import { client } from 'src/libs/client'
 
-type ProductsProps = {
+type ShoppingPageProps = {
   products?: Product[]
   errors?: string
 }
 
-const Home: NextPage<ProductsProps> = (props) => {
+const Home: NextPage<ShoppingPageProps> = (props) => {
   const { products, errors } = props
   return (
     <>
@@ -24,7 +24,7 @@ const Home: NextPage<ProductsProps> = (props) => {
   )
 }
 
-export const getStaticProps: GetStaticProps<ProductsProps> = async () => {
+export const getStaticProps: GetStaticProps<ShoppingPageProps> = async () => {
   try {
     const products: Product[] = await client.product.fetchAll()
     return {

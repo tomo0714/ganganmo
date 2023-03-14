@@ -1,7 +1,7 @@
 import { css } from '@emotion/react'
 import { ReactNode } from 'react'
 
-const IconWrapperStyle = css`
+const iconWrapperStyle = css`
   display: flex;
   width: 80px;
   justify-content: space-between;
@@ -17,5 +17,5 @@ type IconWrapperProps = {
 
 export const IconWrapper = (props: IconWrapperProps) => {
   const { children } = props
-  return <ul css={IconWrapperStyle}>{children}</ul>
+  return <ul css={iconWrapperStyle}>{children}</ul>
 }

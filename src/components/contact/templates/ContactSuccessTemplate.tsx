@@ -1,7 +1,7 @@
 import { css } from '@emotion/react'
 import { Button } from '@/components/common/atoms/Button'
 
-const ContactSuccessStyle = css`
+const contactSuccessStyle = css`
   max-width: 400px;
   height: 100vh;
   padding: calc(30vh - 134px) 20px 20px 20px;
@@ -18,7 +18,7 @@ const ContactSuccessStyle = css`
 
 export const ContactSuccessTemplate = () => {
   return (
-    <div css={ContactSuccessStyle}>
+    <div css={contactSuccessStyle}>
       <p>Thank you for your inquiry. </p>
       <p>Your inquiry has been received.</p>
       <p>We will get back to you as soon as possible.</p>

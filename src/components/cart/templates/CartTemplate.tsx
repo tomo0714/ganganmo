@@ -3,7 +3,7 @@ import { CartTotalPrice } from '@/components/cart/atoms/CartTotalPrice'
 import { CartButtonArea } from '@/components/cart/molecules/CartButtonArea'
 import { CartItem } from '@/components/cart/organisms/CartItem'
 
-const cartStyle = css`
+const cartTemplateStyle = css`
   max-width: 600px;
   padding: 0 20px;
   margin: 0 auto;
@@ -19,7 +19,7 @@ export const CartTemplate = (props: CartTemplateProps) => {
   let totalPrice = 0
 
   return (
-    <div css={cartStyle}>
+    <div css={cartTemplateStyle}>
       <ul>
         {cart.lineItems.map((item) => {
           const imgUrl = item.customAttributes.find((attr) => attr.key === 'imageUrl')?.value

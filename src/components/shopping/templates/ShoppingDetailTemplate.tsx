@@ -3,7 +3,7 @@ import { Product } from 'shopify-buy'
 import { ShoppingDetailContent } from '@/components/shopping/organisms/ShoppingDetailContent'
 import { ShoppingDetailPreview } from '@/components/shopping/organisms/ShoppingDetailPreview'
 
-const detailStyle = css`
+const shoppingDetailStyle = css`
   max-width: 540px;
   padding: 0 20px;
   margin: 0 auto;
@@ -24,7 +24,7 @@ type ShoppingDetailTemplateProps = {
 export const ShoppingDetailTemplate = (props: ShoppingDetailTemplateProps) => {
   const { product, onClickCart, onClickImage, imageIndex } = props
   return (
-    <div css={detailStyle}>
+    <div css={shoppingDetailStyle}>
       <ShoppingDetailPreview
         thumbnailSrc={product.images[imageIndex].src}
         thumbnailAlt={product.title}

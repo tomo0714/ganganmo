@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil'
 import { CartIcon } from '@/components/common/atoms/CartIcon'
 import { Logo } from '@/components/common/atoms/Logo'
 import useCart from '@/hooks/useCart'
-import { cartCountRecoil } from '@/recoil/cartCountRecoil'
+import { CartCountRecoil } from '@/recoil/CartCountRecoil'
 
 const headerStyle = css`
   position: fixed;
@@ -21,7 +21,7 @@ const headerStyle = css`
 
 export const Header = () => {
   const [count, setCount] = useState<number>(0)
-  const cartCount = useRecoilValue(cartCountRecoil)
+  const cartCount = useRecoilValue(CartCountRecoil)
   const { cart } = useCart()
 
   useEffect(() => setCount(cart ? cart.lineItems.length : 0), [cart])

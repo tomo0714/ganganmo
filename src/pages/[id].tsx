@@ -6,12 +6,12 @@ import { ShoppingDetailTemplate } from '@/components/shopping/templates/Shopping
 import useCart from '@/hooks/useCart'
 import { client } from 'src/libs/client'
 
-type ProductProps = {
+type ShoppingDetailPageProps = {
   product?: Product
   errors?: string
 }
 
-const ShoppingDetailPage = (props: ProductProps) => {
+const ShoppingDetailPage = (props: ShoppingDetailPageProps) => {
   const { product, errors } = props
   const { checkout } = useCart()
   const [imageIndex, setImageIndex] = useState<number>(0)
@@ -54,7 +54,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: false }
 }
 
-export const getStaticProps: GetStaticProps<ProductProps> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<ShoppingDetailPageProps> = async ({ params }) => {
   try {
     const id = params?.id
     if (!id) {

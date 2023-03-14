@@ -1,10 +1,10 @@
 import { css } from '@emotion/react'
-import Link from 'next/link'
 import { Title } from '@/components/common/atoms/Title'
+import { LinkWrapper } from '@/components/common/molecules/LinkWrapper'
 import { ShoppingItemImage } from '@/components/shopping/atoms/ShoppingItemImage'
 import { ShoppingItemPrice } from '@/components/shopping/atoms/ShoppingItemPrice'
 
-const shoppingListStyle = css`
+const shoppingItemStyle = css`
   position: relative;
   width: 49%;
   height: 70vw;
@@ -32,16 +32,12 @@ type ShoppingItemProps = {
 export const ShoppingItem = (props: ShoppingItemProps) => {
   const { id, src, title, price } = props
   return (
-    <li css={shoppingListStyle}>
-      <Link href={id}>
-        <a>
-          <div>
-            <ShoppingItemImage src={src} alt={title} />
-            <Title type="h4">{title}</Title>
-            <ShoppingItemPrice price={price} />
-          </div>
-        </a>
-      </Link>
+    <li css={shoppingItemStyle}>
+      <LinkWrapper href={id}>
+        <ShoppingItemImage src={src} alt={title} />
+        <Title type="h4">{title}</Title>
+        <ShoppingItemPrice price={price} />
+      </LinkWrapper>
     </li>
   )
 }

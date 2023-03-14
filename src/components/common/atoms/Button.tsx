@@ -1,5 +1,5 @@
 import { css } from '@emotion/react'
-import Link from 'next/link'
+import { LinkWrapper } from '@/components/common/molecules/LinkWrapper'
 
 const buttonStyle = css`
   display: block;
@@ -33,13 +33,11 @@ export const Button = (props: ButtonProps) => {
   return (
     <>
       {href ? (
-        <Link href={href}>
-          <a>
-            <button type={type} css={[buttonStyle, propsStyle]} onClick={onClick}>
-              {title}
-            </button>
-          </a>
-        </Link>
+        <LinkWrapper href={href}>
+          <button type={type} css={[buttonStyle, propsStyle]} onClick={onClick}>
+            {title}
+          </button>
+        </LinkWrapper>
       ) : (
         <button type={type} css={[buttonStyle, propsStyle]} onClick={onClick}>
           {title}

@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
-import Link from 'next/link'
 import { BiShoppingBag } from 'react-icons/bi'
+import { LinkWrapper } from '@/components/common/molecules/LinkWrapper'
 
 const cartStyle = css`
   display: flex;
@@ -21,11 +21,11 @@ type CartIconProps = {
 export const CartIcon = (props: CartIconProps) => {
   const { href, cartCount } = props
   return (
-    <Link href={href}>
-      <a css={cartStyle}>
+    <LinkWrapper href={href}>
+      <div css={cartStyle}>
         <BiShoppingBag size={21} />
         <span css={cartNumberStyle}>{cartCount}</span>
-      </a>
-    </Link>
+      </div>
+    </LinkWrapper>
   )
 }

@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 
-const TextareaStyle = css`
+const textareaStyle = css`
   margin-top: 30px;
 
   textarea {
@@ -19,7 +19,7 @@ type TextareaProps = {
 export const Textarea = (props: TextareaProps) => {
   const { label, id, name } = props
   return (
-    <div css={TextareaStyle}>
+    <div css={textareaStyle}>
       <label htmlFor="message">{label}</label>
       <textarea id={id} name={name}></textarea>
     </div>

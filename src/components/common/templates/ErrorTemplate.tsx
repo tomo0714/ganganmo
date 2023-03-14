@@ -11,7 +11,7 @@ const errorMessageStyle = css`
 `
 
 type ErrorTemplateProps = {
-  message: string | undefined
+  message?: string
 }
 
 export const ErrorTemplate = (props: ErrorTemplateProps) => {

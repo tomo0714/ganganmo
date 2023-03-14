@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useSetRecoilState } from 'recoil'
 import { ContactTemplate } from '@/components/contact/templates/ContactTemplate'
 import { LoadingRecoil } from '@/recoil/LoadingRecoil'
@@ -9,7 +9,7 @@ const ContactPage = () => {
   const router = useRouter()
   const [isFormError, setIsFormError] = useState<boolean>(false)
 
-  const onSubmit = async (event: any) => {
+  const onSubmit = useCallback(async (event: any) => {
     event.preventDefault()
     if (!event.target.name.value || !event.target.email.value || !event.target.message.value) {
       setIsFormError(true)
@@ -38,7 +38,7 @@ const ContactPage = () => {
         setLoadingRecoil(false)
       }, 500)
     }
-  }
+  }, [])
   return <ContactTemplate isFormError={isFormError} onSubmit={onSubmit} />
 }
 

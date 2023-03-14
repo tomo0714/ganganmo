@@ -3,6 +3,12 @@ import { ShoppingDetailImage } from '@/components/shopping/atoms/ShoppingDetailI
 import { ShoppingDetailThumbnail } from '@/components/shopping/atoms/ShoppingDetailThumbnail'
 import { ShoppingDetailImageWrapper } from '@/components/shopping/molecules/ShoppingDetailImageWrapper'
 
+const shoppingDetailPreviewStyle = css`
+  @media screen and (min-width: 1000px) {
+    width: 400px;
+  }
+`
+
 type ShoppingDetailPreviewProps = {
   thumbnailSrc: string
   thumbnailAlt: string
@@ -13,13 +19,7 @@ type ShoppingDetailPreviewProps = {
 export const ShoppingDetailPreview = (props: ShoppingDetailPreviewProps) => {
   const { thumbnailSrc, thumbnailAlt, images, onClickImage } = props
   return (
-    <div
-      css={css`
-        @media screen and (min-width: 1000px) {
-          width: 400px;
-        }
-      `}
-    >
+    <div css={shoppingDetailPreviewStyle}>
       <ShoppingDetailThumbnail src={thumbnailSrc} alt={thumbnailAlt} />
       <ShoppingDetailImageWrapper>
         {images.map(

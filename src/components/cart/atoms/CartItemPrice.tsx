@@ -15,7 +15,7 @@ const taxincStyle = css`
 `
 
 type CartItemPriceProps = {
-  price: string | undefined
+  price?: string
 }
 
 export const CartItemPrice = (props: CartItemPriceProps) => {
