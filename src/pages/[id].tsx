@@ -1,12 +1,17 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useCallback, useState } from 'react'
 import { CustomAttribute, Product } from 'shopify-buy'
-import { ShoppingDetailPage } from '@/components/shopping/pages/ShoppingDetailPage'
+import { ErrorTemplate } from '@/components/common/templates/ErrorTemplate'
+import { ShoppingDetailTemplate } from '@/components/shopping/templates/ShoppingDetailTemplate'
 import useCart from '@/hooks/useCart'
-import { ProductProps } from '@/types/shopping'
 import { client } from 'src/libs/client'
 
-const DetailPage = (props: ProductProps) => {
+type ProductProps = {
+  product?: Product
+  errors?: string
+}
+
+const ShoppingDetailPage = (props: ProductProps) => {
   const { product, errors } = props
   const { checkout } = useCart()
   const [imageIndex, setImageIndex] = useState<number>(0)
@@ -26,13 +31,18 @@ const DetailPage = (props: ProductProps) => {
   const onClickImage = useCallback((index: number) => setImageIndex(index), [])
 
   return (
-    <ShoppingDetailPage
-      product={product}
-      errors={errors}
-      onClickCart={onClickCart}
-      onClickImage={onClickImage}
-      imageIndex={imageIndex}
-    />
+    <>
+      {errors || !product ? (
+        <ErrorTemplate message={errors} />
+      ) : (
+        <ShoppingDetailTemplate
+          product={product}
+          onClickCart={onClickCart}
+          onClickImage={onClickImage}
+          imageIndex={imageIndex}
+        />
+      )}
+    </>
   )
 }
 
@@ -58,4 +68,4 @@ export const getStaticProps: GetStaticProps<ProductProps> = async ({ params }) =
   }
 }
 
-export default DetailPage
+export default ShoppingDetailPage

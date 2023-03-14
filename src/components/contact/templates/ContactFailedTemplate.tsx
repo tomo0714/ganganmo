@@ -13,7 +13,7 @@ const ContactFailedStyle = css`
   }
 `
 
-export const ContactFailedPage = () => {
+export const ContactFailedTemplate = () => {
   return (
     <div css={ContactFailedStyle}>
       <p>Failed to send message.</p>

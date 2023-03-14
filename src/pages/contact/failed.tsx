@@ -1,6 +1,6 @@
-import { ContactFailedPage } from '@/components/contact/pages/ContactFailedPage'
+import { ContactFailedTemplate } from '@/components/contact/templates/ContactFailedTemplate'
 
-const ContactFailed = () => {
-  return <ContactFailedPage />
+const ContactFailedPage = () => {
+  return <ContactFailedTemplate />
 }
-export default ContactFailed
+export default ContactFailedPage

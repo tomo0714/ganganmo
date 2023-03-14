@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useSetRecoilState } from 'recoil'
-import { ContactPage } from '@/components/contact/pages/ContactPage'
+import { ContactTemplate } from '@/components/contact/templates/ContactTemplate'
 import { LoadingRecoil } from '@/recoil/LoadingRecoil'
 
-const Contact = () => {
+const ContactPage = () => {
   const setLoadingRecoil = useSetRecoilState(LoadingRecoil)
   const router = useRouter()
   const [isFormError, setIsFormError] = useState<boolean>(false)
@@ -39,7 +39,7 @@ const Contact = () => {
       }, 500)
     }
   }
-  return <ContactPage isFormError={isFormError} onSubmit={onSubmit} />
+  return <ContactTemplate isFormError={isFormError} onSubmit={onSubmit} />
 }
 
-export default Contact
+export default ContactPage

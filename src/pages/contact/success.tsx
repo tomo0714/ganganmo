@@ -1,7 +1,7 @@
-import { ContactSuccessPage } from '@/components/contact/pages/ContactSuccessPage'
+import { ContactSuccessTemplate } from '@/components/contact/templates/ContactSuccessTemplate'
 
-const ContactSuccess = () => {
-  return <ContactSuccessPage />
+const ContactSuccessPage = () => {
+  return <ContactSuccessTemplate />
 }
 
-export default ContactSuccess
+export default ContactSuccessPage

@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
 import { useSetRecoilState } from 'recoil'
-import { CartPage } from '@/components/cart/pages/CartPage'
+import { CartEmptyTemplate } from '@/components/cart/templates/CartEmptyTemplate'
+import { CartTemplate } from '@/components/cart/templates/CartTemplate'
 import useCart from '@/hooks/useCart'
 import { cartCountRecoil } from '@/recoil/cartCountRecoil'
 
-const Cart = () => {
+const CartPage = () => {
   const { cart, checkout } = useCart()
   const setCartCount = useSetRecoilState(cartCountRecoil)
 
@@ -16,7 +17,15 @@ const Cart = () => {
     checkout.removeItem(id)
   }
 
-  return <CartPage cart={cart} onClickDelete={onClickDelete} />
+  return (
+    <>
+      {cart && cart.lineItems.length > 0 ? (
+        <CartTemplate cart={cart} onClickDelete={onClickDelete} />
+      ) : (
+        <CartEmptyTemplate message="Your cart is empty." />
+      )}
+    </>
+  )
 }
 
-export default Cart
+export default CartPage

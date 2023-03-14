@@ -1,12 +1,27 @@
 import { GetStaticProps, NextPage } from 'next'
 import { Product } from 'shopify-buy'
-import { ShoppingPage } from '@/components/shopping/pages/ShoppingPage'
-import { ProductsProps } from '@/types/shopping'
+import { ErrorTemplate } from '@/components/common/templates/ErrorTemplate'
+import { ShoppingTemplate } from '@/components/shopping/templates/ShoppingTemplate'
 import { client } from 'src/libs/client'
+
+type ProductsProps = {
+  products?: Product[]
+  errors?: string
+}
 
 const Home: NextPage<ProductsProps> = (props) => {
   const { products, errors } = props
-  return <ShoppingPage products={products} errors={errors} />
+  return (
+    <>
+      {!products ? (
+        <ErrorTemplate message={errors} />
+      ) : products.length === 0 ? (
+        <ErrorTemplate message="Product does not exist!" />
+      ) : (
+        <ShoppingTemplate products={products} />
+      )}
+    </>
+  )
 }
 
 export const getStaticProps: GetStaticProps<ProductsProps> = async () => {

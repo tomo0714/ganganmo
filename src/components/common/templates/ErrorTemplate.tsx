@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 
-const errorPageStyle = css`
+const errorTemplateStyle = css`
   height: 100vh;
   padding-top: calc(30vh);
 `
@@ -10,14 +10,14 @@ const errorMessageStyle = css`
   text-align: center;
 `
 
-type ErrorPageProps = {
+type ErrorTemplateProps = {
   message: string | undefined
 }
 
-export const ErrorPage = (props: ErrorPageProps) => {
+export const ErrorTemplate = (props: ErrorTemplateProps) => {
   const { message } = props
   return (
-    <div css={errorPageStyle}>
+    <div css={errorTemplateStyle}>
       <p css={errorMessageStyle}>{message ? message : 'An unexpected error occurred.'}</p>
     </div>
   )

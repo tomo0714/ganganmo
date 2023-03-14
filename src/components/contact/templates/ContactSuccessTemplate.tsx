@@ -16,7 +16,7 @@ const ContactSuccessStyle = css`
   }
 `
 
-export const ContactSuccessPage = () => {
+export const ContactSuccessTemplate = () => {
   return (
     <div css={ContactSuccessStyle}>
       <p>Thank you for your inquiry. </p>
