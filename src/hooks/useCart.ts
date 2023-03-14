@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useSetRecoilState } from 'recoil'
 import { Cart } from 'shopify-buy'
 import { browserClient } from '@/libs/client'
-import { LoadingRecoil } from '@/recoil/LoadingRecoil'
+import { LoadingRecoil } from '@/recoils/LoadingRecoil'
 import { Checkout } from '@/types/cart'
 
 const useCart = (): { cart: Cart | null; checkout: Checkout } => {

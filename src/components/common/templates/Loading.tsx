@@ -1,7 +1,7 @@
 import { css } from '@emotion/react'
 import { ReactNode } from 'react'
 import { useRecoilValue } from 'recoil'
-import { LoadingRecoil } from '@/recoil/LoadingRecoil'
+import { LoadingRecoil } from '@/recoils/LoadingRecoil'
 
 const LoadingStyle = css`
   position: absolute;

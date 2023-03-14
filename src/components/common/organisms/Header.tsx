@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil'
 import { CartIcon } from '@/components/common/atoms/CartIcon'
 import { Logo } from '@/components/common/atoms/Logo'
 import useCart from '@/hooks/useCart'
-import { CartCountRecoil } from '@/recoil/CartCountRecoil'
+import { CartCountRecoil } from '@/recoils/CartCountRecoil'
 
 const headerStyle = css`
   position: fixed;

@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useCallback, useState } from 'react'
 import { useSetRecoilState } from 'recoil'
 import { ContactTemplate } from '@/components/contact/templates/ContactTemplate'
-import { LoadingRecoil } from '@/recoil/LoadingRecoil'
+import { LoadingRecoil } from '@/recoils/LoadingRecoil'
 
 const ContactPage = () => {
   const setLoadingRecoil = useSetRecoilState(LoadingRecoil)

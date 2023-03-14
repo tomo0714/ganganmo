@@ -3,7 +3,7 @@ import { useSetRecoilState } from 'recoil'
 import { CartEmptyTemplate } from '@/components/cart/templates/CartEmptyTemplate'
 import { CartTemplate } from '@/components/cart/templates/CartTemplate'
 import useCart from '@/hooks/useCart'
-import { CartCountRecoil } from '@/recoil/CartCountRecoil'
+import { CartCountRecoil } from '@/recoils/CartCountRecoil'
 
 const CartPage = () => {
   const { cart, checkout } = useCart()
