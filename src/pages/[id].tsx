@@ -49,7 +49,7 @@ const ShoppingDetailPage = (props: ShoppingDetailPageProps) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const products: Product[] = await client.product.fetchAll()
   const paths = products.map((product) => ({
-    params: { id: product.id.toString() }
+    params: { id: product.id.toString().replace('gid://shopify/Product/', '') }
   }))
   return { paths, fallback: false }
 }
@@ -60,7 +60,7 @@ export const getStaticProps: GetStaticProps<ShoppingDetailPageProps> = async ({ 
     if (!id) {
       return { props: { errors: 'not found' } }
     }
-    const productRes = await client.product.fetch(id as string)
+    const productRes = await client.product.fetch(`gid://shopify/Product/${id}`)
     const product = JSON.parse(JSON.stringify(productRes))
     return { props: { product: product } }
   } catch (err) {
