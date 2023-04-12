@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build && next export",
     "start": "next start",
+    "deploy": "npm run build && firebase deploy",
     "lint": "next lint",
     "prettier": "prettier --config .prettierrc.json --ignore-path .gitignore './**/*.{ts,tsx,json,md}'",
     "format": "yarn prettier --write",

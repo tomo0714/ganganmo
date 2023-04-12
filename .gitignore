@@ -38,3 +38,6 @@ next-env.d.ts
 # firebase
 .firebaserc
 .firebase/
+
+node_modules/
+lib/
