@@ -21,8 +21,29 @@ const headerStyle = css`
 
 export const Header = () => {
   const [count, setCount] = useState<number>(0)
+  const [envLabel, setEnvLabel] = useState('')
   const cartCount = useRecoilValue(CartCountRecoil)
   const { cart } = useCart()
+
+  useEffect(() => {
+    switch (process.env.NEXT_PUBLIC_ENV_NAME) {
+      case 'LOCAL':
+        setEnvLabel('ローカル環境')
+        break
+      case 'DEV':
+        setEnvLabel('開発環境')
+        break
+      case 'STG':
+        setEnvLabel('ステージング環境')
+        break
+      case 'PRD':
+        setEnvLabel('')
+        break
+      default:
+        setEnvLabel('')
+        break
+    }
+  }, [])
 
   useEffect(() => setCount(cart ? cart.lineItems.length : 0), [cart])
   useEffect(() => setCount(cartCount), [cartCount])
@@ -30,6 +51,7 @@ export const Header = () => {
   return (
     <header css={headerStyle}>
       <Logo />
+      {envLabel && <p>({envLabel})</p>}
       <CartIcon href="/cart" cartCount={count} />
     </header>
   )
