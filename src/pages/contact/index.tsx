@@ -11,11 +11,16 @@ const ContactPage = () => {
 
   const onSubmit = useCallback(async (event: any) => {
     event.preventDefault()
-    if (!event.target.name.value || !event.target.email.value || !event.target.message.value) {
+
+    const { name, email, message } = event.target
+
+    if (!name.value || !email.value || !message.value) {
       setIsFormError(true)
       return
     }
+
     setLoadingRecoil(true)
+
     try {
       const res = await fetch('/api/send', {
         body: JSON.stringify({
@@ -28,6 +33,7 @@ const ContactPage = () => {
         },
         method: 'POST'
       })
+
       await res.json()
       router.push('/contact/success')
     } catch (error) {
@@ -39,6 +45,7 @@ const ContactPage = () => {
       }, 500)
     }
   }, [])
+
   return <ContactTemplate isFormError={isFormError} onSubmit={onSubmit} />
 }
 

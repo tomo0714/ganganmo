@@ -11,21 +11,25 @@ const useCart = (): { cart: Cart | null; checkout: Checkout } => {
   const setLoadingRecoil = useSetRecoilState(LoadingRecoil)
 
   /**
+   * fetch or create cart
+   */
+  const fetchOrCreateCart = useCallback(async (id: string | null) => {
+    if (id) {
+      return await browserClient.checkout.fetch(id)
+    } else {
+      const newCart = await browserClient.checkout.create()
+      localStorage.setItem('CHECKOUT_ID', newCart.id as string)
+      return newCart
+    }
+  }, [])
+
+  /**
    * get checkout id and initialize cart object
    */
   const initializeCart = useCallback(async () => {
     const id: string | null = localStorage.getItem('CHECKOUT_ID')
-    let newCart: Cart
-    let newCheckoutId: string
-    if (id) {
-      newCart = await browserClient.checkout.fetch(id)
-      newCheckoutId = newCart.id as string
-    } else {
-      newCart = await browserClient.checkout.create()
-      newCheckoutId = newCart.id as string
-      localStorage.setItem('CHECKOUT_ID', newCheckoutId)
-    }
-    setCheckoutId(newCheckoutId)
+    const newCart = await fetchOrCreateCart(id)
+    setCheckoutId(newCart.id as string)
     setCart(newCart)
   }, [])
 
