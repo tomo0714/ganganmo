@@ -12,10 +12,11 @@ const cartTemplateStyle = css`
 type CartTemplateProps = {
   cart: ShopifyBuy.Cart
   onClickDelete: (id: string) => void
+  onClickCheckOut?: () => void
 }
 
 export const CartTemplate = (props: CartTemplateProps) => {
-  const { cart, onClickDelete } = props
+  const { cart, onClickDelete, onClickCheckOut } = props
   let totalPrice = 0
 
   return (
@@ -31,7 +32,7 @@ export const CartTemplate = (props: CartTemplateProps) => {
         })}
       </ul>
       <CartTotalPrice totalPrice={totalPrice} />
-      <CartButtonArea checkoutUrl={cart.webUrl} />
+      <CartButtonArea checkoutUrl={cart.webUrl} onClickCheckOut={onClickCheckOut} />
     </div>
   )
 }

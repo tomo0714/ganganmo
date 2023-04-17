@@ -13,6 +13,10 @@ const CartPage = () => {
     setCartCount(cart ? cart.lineItems.length : 0)
   }, [cart])
 
+  const onClickCheckOut = useCallback(() => {
+    localStorage.removeItem('CHECKOUT_ID')
+  }, [])
+
   const onClickDelete = useCallback(
     (id: string) => {
       checkout.removeItem(id)
@@ -25,7 +29,7 @@ const CartPage = () => {
       {!cart || !cart.lineItems.length ? (
         <CartEmptyTemplate message="Your cart is empty." />
       ) : (
-        <CartTemplate cart={cart} onClickDelete={onClickDelete} />
+        <CartTemplate cart={cart} onClickDelete={onClickDelete} onClickCheckOut={onClickCheckOut} />
       )}
     </>
   )

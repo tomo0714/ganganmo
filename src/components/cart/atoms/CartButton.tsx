@@ -9,13 +9,14 @@ type CartButtonProps = {
   href: string
   title: string
   isBlack?: boolean
+  onClick?: () => void
 }
 
 export const CartButton = (props: CartButtonProps) => {
-  const { href, isBlack, title } = props
+  const { href, isBlack, title, onClick } = props
   return (
     <li css={cartButtonStyle}>
-      <Button href={href} title={title} isBlack={isBlack} />
+      <Button href={href} title={title} isBlack={isBlack} onClick={onClick} />
     </li>
   )
 }

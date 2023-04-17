@@ -9,14 +9,15 @@ const buttonWrapperStyle = css`
 
 type CartButtonAreaProps = {
   checkoutUrl: string
+  onClickCheckOut?: () => void
 }
 
 export const CartButtonArea = (props: CartButtonAreaProps) => {
-  const { checkoutUrl } = props
+  const { checkoutUrl, onClickCheckOut } = props
   return (
     <ul css={buttonWrapperStyle}>
       <CartButton href="/" title="back to shopping" />
-      <CartButton href={checkoutUrl} title="checkout" isBlack />
+      <CartButton href={checkoutUrl} title="checkout" isBlack onClick={onClickCheckOut} />
     </ul>
   )
 }
