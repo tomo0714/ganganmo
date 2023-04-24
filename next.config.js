@@ -3,9 +3,7 @@ const nextConfig = {
   trailingSlash: true,
   reactStrictMode: true,
   swcMinify: true,
-  experimental: {
-    optimizeFonts: true
-  }
+  optimizeFonts: true
 }
 
 module.exports = nextConfig
