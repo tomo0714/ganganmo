@@ -26,7 +26,7 @@ const Home: NextPage<ShoppingPageProps> = (props) => {
 
 export const getStaticProps: GetStaticProps<ShoppingPageProps> = async () => {
   try {
-    const products: Product[] = await client.product.fetchAll()
+    const products: Product[] = await client.product.fetchAll(100)
     return {
       props: {
         products: JSON.parse(JSON.stringify(products))
